@@ -1,0 +1,33 @@
+name: Build-Dotnet
+
+on: 
+    push:
+        branches:
+            - main
+    schedule:
+        - cron: '30 6 * * 5' # every Friday 06:30 UTC
+
+jobs:
+    Build:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: 'Checkout'
+          uses: actions/checkout@v4
+
+        - name: 'Setup dotnet'
+          uses: actions/setup-dotnet@v3
+          with:
+            dotnet-version: '6.0.x'
+
+        - name: 'Baixar dependencias'
+          working-directory: github4women
+          run: dotnet restore **/*.csproj
+
+        - run: echo "Dependencias baixadas com sucesso!"
+
+        - name: 'Compilar webapp'
+          working-directory: github4women
+          run: dotnet build **/*.csproj --no-restore
+        
+        - run: echo "Webapp gerado com sucesso!"
