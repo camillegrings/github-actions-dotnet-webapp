@@ -21,13 +21,11 @@ jobs:
             dotnet-version: '6.0.x'
 
         - name: 'Baixar dependencias'
-          working-directory: github4women
-          run: dotnet restore
+          run: dotnet restore **/*.csproj
 
         - run: echo "Dependencias baixadas com sucesso!"
 
         - name: 'Compilar webapp'
-          working-directory: github4women
-          run: dotnet build --no-restore
+          run: dotnet build **/*.csproj --no-restore
         
         - run: echo "Webapp gerado com sucesso!"
