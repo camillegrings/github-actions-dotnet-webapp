@@ -22,12 +22,12 @@ jobs:
 
         - name: 'Baixar dependencias'
           working-directory: github4women
-          run: dotnet restore **/*.csproj
+          run: dotnet restore
 
         - run: echo "Dependencias baixadas com sucesso!"
 
         - name: 'Compilar webapp'
           working-directory: github4women
-          run: dotnet build **/*.csproj --no-restore
+          run: dotnet build --no-restore
         
         - run: echo "Webapp gerado com sucesso!"
